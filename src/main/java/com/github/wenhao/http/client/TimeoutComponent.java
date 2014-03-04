@@ -16,7 +16,11 @@ public class TimeoutComponent implements HttpClientComponent
     @Override
     public void apply(HttpClientBuilder httpClientBuilder, Request request)
     {
-        RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(seconds(request.getTimeout())).setSocketTimeout(seconds(request.getTimeout())).setConnectionRequestTimeout(seconds(request.getTimeout())).build();
+        RequestConfig requestConfig = RequestConfig.custom()
+                .setConnectTimeout(seconds(request.getTimeout()))
+                .setSocketTimeout(seconds(request.getTimeout()))
+                .setConnectionRequestTimeout(seconds(request.getTimeout()))
+                .build();
         httpClientBuilder.setDefaultRequestConfig(requestConfig);
     }
 

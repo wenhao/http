@@ -1,6 +1,8 @@
 apply plugin: 'idea'
 apply plugin: 'maven'
 apply plugin: 'java'
+apply plugin: 'checkstyle'
+apply plugin: "jacoco"
 
 group = 'com.github.wenhao'
 version '0.0.1-SNAPSHOT'
@@ -46,4 +48,23 @@ dependencies {
         archives jar
         archives sourcesJar
     }
+}
+
+checkstyle {
+    configFile = file('config/checkstyle/checkstyle.xml')
+}
+
+jacoco {
+    toolVersion = "0.6.2.201302030002"
+}
+
+jacocoTestReport {
+    group = "Reporting"
+    description = "Generate Jacoco coverage reports after running tests."
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.enabled true
+    }
+    additionalSourceDirs = files(sourceSets.main.allJava.srcDirs)
 }

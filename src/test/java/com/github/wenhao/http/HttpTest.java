@@ -116,32 +116,6 @@ public class HttpTest
     }
 
     @Test
-    public void should_be_able_to_get_response_via_post_when_header_require() throws Exception
-    {
-
-        // given
-        httpServerWithHeader.request(eq(header("test"), "test")).response("test");
-
-        running(httpServerWithHeader, new Runnable()
-        {
-            @Override
-            public void run() throws Exception
-            {
-                // when
-                request.setUrl(HOST);
-                request.setMethod(HttpMethod.POST);
-                request.addHeader("test", "test");
-                http.setRequest(request);
-                Response response = http.send();
-
-                // then
-                assertThat(response.getStatus(), is(200));
-                assertThat(response.getContent(), is("test"));
-            }
-        });
-    }
-
-    @Test
     public void should_be_able_to_get_response_via_post_when_parameter_require() throws Exception
     {
 
