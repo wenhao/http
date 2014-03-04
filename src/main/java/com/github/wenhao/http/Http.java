@@ -26,11 +26,6 @@ public class Http
         this.httpRequestFactory = httpRequestFactory;
     }
 
-    public void setRequest(Request request)
-    {
-        this.request = request;
-    }
-
     public Response send()
     {
         HttpClient httpClient = httpClientFactory.create(request);
@@ -60,5 +55,10 @@ public class Http
         } catch (IOException e) {
             return httpResponse.getStatusLine().getReasonPhrase();
         }
+    }
+
+    public void setRequest(Request request)
+    {
+        this.request = request;
     }
 }
