@@ -44,14 +44,27 @@ dependencies {
         classifier = 'sources'
     }
 
+    task javadocJar(type: Jar, dependsOn: javadoc) {
+        classifier = 'javadoc'
+        from javadoc.destinationDir
+    }
+
     artifacts {
         archives jar
         archives sourcesJar
+        archives javadocJar
     }
 }
 
 checkstyle {
     configFile = file('config/checkstyle/checkstyle.xml')
+}
+
+test {
+    jacoco {
+        enabled = true
+        append = true
+    }
 }
 
 jacoco {
@@ -66,5 +79,4 @@ jacocoTestReport {
         csv.enabled false
         html.enabled true
     }
-    additionalSourceDirs = files(sourceSets.main.allJava.srcDirs)
 }

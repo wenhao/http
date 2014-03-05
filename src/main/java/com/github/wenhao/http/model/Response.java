@@ -22,13 +22,4 @@ public class Response
         return content;
     }
 
-    public void setStatus(Integer status)
-    {
-        this.status = status;
-    }
-
-    public void setContent(String content)
-    {
-        this.content = content;
-    }
 }
