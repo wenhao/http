@@ -68,12 +68,13 @@ test {
 }
 
 jacoco {
-    toolVersion = "0.6.2.201302030002"
+    toolVersion = "0.6.5.201403032054"
 }
 
 jacocoTestReport {
     group = "Reporting"
     description = "Generate Jacoco coverage reports after running tests."
+    additionalSourceDirs = files(sourceSets.main.allJava.srcDirs)
     reports {
         xml.enabled false
         csv.enabled false

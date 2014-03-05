@@ -8,18 +8,14 @@ import static com.github.dreamhead.moco.Moco.httpserver;
 import static com.github.dreamhead.moco.Runner.running;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static se.jbee.inject.Dependency.dependency;
 
 import com.github.dreamhead.moco.HttpServer;
 import com.github.dreamhead.moco.Runnable;
-import com.github.wenhao.http.dependencies.RootBundle;
 import com.github.wenhao.http.model.HttpMethod;
 import com.github.wenhao.http.model.Request;
 import com.github.wenhao.http.model.Response;
 import org.junit.Before;
 import org.junit.Test;
-import se.jbee.inject.Injector;
-import se.jbee.inject.bootstrap.Bootstrap;
 
 public class HttpTest
 {
@@ -42,8 +38,7 @@ public class HttpTest
         httpServerWithParameter = httpserver(9999);
         httpServerWithBody = httpserver(9999);
 
-        Injector injector = Bootstrap.injector(RootBundle.class);
-        http = injector.resolve(dependency(Http.class));
+        http = HttpFactory.create();
         request = new Request();
     }
 
