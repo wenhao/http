@@ -17,6 +17,8 @@ project.ext {
     silkVersion = '0.6'
     httpVersion = '4.3.2'
     commonsVersion = '3.2.1'
+    netVersion = '3.3'
+    ioVersion = '2.4'
 
     junitVersion = '4.11'
     hamcrestVersion = '1.3'
@@ -27,6 +29,8 @@ project.ext {
 dependencies {
     compile(
             "se.jbee:silk-di:$silkVersion",
+            "commons-net:commons-net:$netVersion",
+            "commons-io:commons-io:$ioVersion",
             "org.apache.commons:commons-lang3:$commonsVersion",
             "commons-collections:commons-collections:$commonsVersion",
             "org.apache.httpcomponents:httpclient:$httpVersion"
