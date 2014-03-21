@@ -11,7 +11,7 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.message.BasicNameValuePair;
 
-public class Request
+public class HttpRequest
 {
 
     private String url;
@@ -22,7 +22,7 @@ public class Request
     private HttpHost proxy;
     private Integer timeout;
 
-    public Request()
+    public HttpRequest()
     {
         this.parameters = new ArrayList<NameValuePair>();
         this.headers = new ArrayList<Header>();

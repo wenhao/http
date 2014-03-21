@@ -3,7 +3,7 @@ package com.github.wenhao.monitor.core.http.client;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
-import com.github.wenhao.monitor.core.http.model.Request;
+import com.github.wenhao.monitor.core.http.model.HttpRequest;
 import org.junit.Test;
 
 public class HeaderComponentTest
@@ -13,8 +13,8 @@ public class HeaderComponentTest
     public void should_be_able_to_set_default_headers() throws Exception
     {
         // given
-        Request request = new Request();
-        request.addHeader("test", "test");
+        HttpRequest httpRequest = new HttpRequest();
+        httpRequest.addHeader("test", "test");
 
 
         // when
@@ -22,6 +22,6 @@ public class HeaderComponentTest
 
 
         // then
-        assertThat(headerComponent.isApplicable(request), is(true));
+        assertThat(headerComponent.isApplicable(httpRequest), is(true));
     }
 }

@@ -19,8 +19,8 @@ import com.github.dreamhead.moco.Runnable;
 import com.github.wenhao.monitor.core.http.client.HttpClientFactory;
 import com.github.wenhao.monitor.core.http.method.HttpRequestFactory;
 import com.github.wenhao.monitor.core.http.model.HttpMethod;
-import com.github.wenhao.monitor.core.http.model.Request;
-import com.github.wenhao.monitor.core.http.model.Response;
+import com.github.wenhao.monitor.core.http.model.HttpRequest;
+import com.github.wenhao.monitor.core.http.model.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
@@ -33,7 +33,7 @@ public class HttpTest
     private static final String HOST = "http://localhost:9999";
     private HttpServer httpserver;
     private Http http;
-    private Request request;
+    private HttpRequest httpRequest;
     private HttpServer httpServerWithHeader;
     private HttpServer httpServerWithParameter;
     private HttpServer httpServerWithBody;
@@ -48,7 +48,7 @@ public class HttpTest
         httpServerWithBody = httpserver(9999);
 
         http = HttpFactory.create();
-        request = new Request();
+        httpRequest = new HttpRequest();
     }
 
     @Test
@@ -60,13 +60,13 @@ public class HttpTest
             public void run() throws Exception
             {
                 // when
-                request.setUrl(HOST);
-                request.setMethod(HttpMethod.GET);
-                http.setRequest(request);
-                Response response = http.send();
+                httpRequest.setUrl(HOST);
+                httpRequest.setMethod(HttpMethod.GET);
+                http.setHttpRequest(httpRequest);
+                HttpResponse httpResponse = http.send();
 
                 // then
-                expectResult(response, 200, "test");
+                expectResult(httpResponse, 200, "test");
             }
         });
     }
@@ -80,13 +80,13 @@ public class HttpTest
             public void run() throws Exception
             {
                 // when
-                request.setUrl(HOST);
-                request.setMethod(HttpMethod.POST);
-                http.setRequest(request);
-                Response response = http.send();
+                httpRequest.setUrl(HOST);
+                httpRequest.setMethod(HttpMethod.POST);
+                http.setHttpRequest(httpRequest);
+                HttpResponse httpResponse = http.send();
 
                 // then
-                expectResult(response, 200, "test");
+                expectResult(httpResponse, 200, "test");
             }
         });
     }
@@ -105,14 +105,14 @@ public class HttpTest
             public void run() throws Exception
             {
                 // when
-                request.setUrl(HOST);
-                request.setMethod(HttpMethod.POST);
-                request.basiAuth("test", "test");
-                http.setRequest(request);
-                Response response = http.send();
+                httpRequest.setUrl(HOST);
+                httpRequest.setMethod(HttpMethod.POST);
+                httpRequest.basiAuth("test", "test");
+                http.setHttpRequest(httpRequest);
+                HttpResponse httpResponse = http.send();
 
                 // then
-                expectResult(response, 200, "test");
+                expectResult(httpResponse, 200, "test");
             }
         });
     }
@@ -130,14 +130,14 @@ public class HttpTest
             public void run() throws Exception
             {
                 // when
-                request.setUrl(HOST);
-                request.setMethod(HttpMethod.POST);
-                request.addParameter("test", "test");
-                http.setRequest(request);
-                Response response = http.send();
+                httpRequest.setUrl(HOST);
+                httpRequest.setMethod(HttpMethod.POST);
+                httpRequest.addParameter("test", "test");
+                http.setHttpRequest(httpRequest);
+                HttpResponse httpResponse = http.send();
 
                 // then
-                expectResult(response, 200, "test");
+                expectResult(httpResponse, 200, "test");
             }
         });
     }
@@ -155,15 +155,15 @@ public class HttpTest
             public void run() throws Exception
             {
                 // when
-                request.setUrl(HOST);
-                request.setMethod(HttpMethod.POST);
-                request.setBody("test");
-                request.setTimeout(200);
-                http.setRequest(request);
-                Response response = http.send();
+                httpRequest.setUrl(HOST);
+                httpRequest.setMethod(HttpMethod.POST);
+                httpRequest.setBody("test");
+                httpRequest.setTimeout(200);
+                http.setHttpRequest(httpRequest);
+                HttpResponse httpResponse = http.send();
 
                 // then
-                expectResult(response, 200, "test");
+                expectResult(httpResponse, 200, "test");
             }
         });
     }
@@ -175,21 +175,21 @@ public class HttpTest
         HttpClientFactory httpClientFactory = mock(HttpClientFactory.class);
         HttpRequestFactory httpRequestFactory = mock(HttpRequestFactory.class);
         HttpClient httpClient = mock(HttpClient.class);
-        given(httpRequestFactory.create(any(Request.class))).willReturn(new HttpPost());
+        given(httpRequestFactory.create(any(HttpRequest.class))).willReturn(new HttpPost());
         given(httpClient.execute(any(HttpUriRequest.class))).willThrow(IOException.class);
-        given(httpClientFactory.create(any(Request.class))).willReturn(httpClient);
+        given(httpClientFactory.create(any(HttpRequest.class))).willReturn(httpClient);
 
         // when
         Http httpRequest = new Http(httpClientFactory, httpRequestFactory);
-        Response response = httpRequest.send();
+        HttpResponse httpResponse = httpRequest.send();
 
         // then
-        expectResult(response, 400, "Bad Request");
+        expectResult(httpResponse, 400, "Bad HttpRequest");
     }
 
-    private void expectResult(Response response, Integer statusCode, String content)
+    private void expectResult(HttpResponse httpResponse, Integer statusCode, String content)
     {
-        assertThat(response.getStatus(), is(statusCode));
-        assertThat(response.getContent(), is(content));
+        assertThat(httpResponse.getStatus(), is(statusCode));
+        assertThat(httpResponse.getContent(), is(content));
     }
 }

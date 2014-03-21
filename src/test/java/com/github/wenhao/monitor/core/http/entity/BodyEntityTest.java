@@ -3,7 +3,7 @@ package com.github.wenhao.monitor.core.http.entity;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
-import com.github.wenhao.monitor.core.http.model.Request;
+import com.github.wenhao.monitor.core.http.model.HttpRequest;
 import org.junit.Test;
 
 public class BodyEntityTest
@@ -13,8 +13,8 @@ public class BodyEntityTest
     public void should_be_able_to_get_body_entity() throws Exception
     {
         // given
-        Request request = new Request();
-        request.setBody("teset");
+        HttpRequest httpRequest = new HttpRequest();
+        httpRequest.setBody("teset");
 
 
         // when
@@ -22,6 +22,6 @@ public class BodyEntityTest
 
 
         // then
-        assertThat(bodyEntity.isApplicable(request), is(true));
+        assertThat(bodyEntity.isApplicable(httpRequest), is(true));
     }
 }

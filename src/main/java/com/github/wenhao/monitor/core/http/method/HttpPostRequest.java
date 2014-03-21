@@ -5,7 +5,7 @@ import java.net.URI;
 import static com.github.wenhao.monitor.core.http.model.HttpMethod.POST;
 
 import com.github.wenhao.monitor.core.http.entity.HttpEntityFactory;
-import com.github.wenhao.monitor.core.http.model.Request;
+import com.github.wenhao.monitor.core.http.model.HttpRequest;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
 
@@ -20,16 +20,16 @@ public class HttpPostRequest implements HttpRequestable
     }
 
     @Override
-    public Boolean isApplicable(Request request)
+    public Boolean isApplicable(HttpRequest httpRequest)
     {
-        return request.getHttpMethod().equals(POST);
+        return httpRequest.getHttpMethod().equals(POST);
     }
 
     @Override
-    public HttpUriRequest apply(Request request)
+    public HttpUriRequest apply(HttpRequest httpRequest)
     {
-        HttpPost httpPost = new HttpPost(URI.create(request.getUrl()));
-        httpPost.setEntity(httpEntityFactory.create(request));
+        HttpPost httpPost = new HttpPost(URI.create(httpRequest.getUrl()));
+        httpPost.setEntity(httpEntityFactory.create(httpRequest));
         return httpPost;
     }
 }

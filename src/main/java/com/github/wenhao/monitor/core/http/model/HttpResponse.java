@@ -1,12 +1,12 @@
 package com.github.wenhao.monitor.core.http.model;
 
-public class Response
+public class HttpResponse
 {
 
     private Integer status;
     private String content;
 
-    public Response(Integer status, String content)
+    public HttpResponse(Integer status, String content)
     {
         this.status = status;
         this.content = content;

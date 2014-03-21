@@ -42,25 +42,25 @@ dependencies {
 
 ### API example
 
-Here is an typical http request.
+Here is an typical http Request.
 
 ```java
-Request request = new Request();
-request.setUrl("https://localhost:8080");
-request.basicAuth("username", "password");
-request.addHeader("key", "value");
-request.addParameter("key", "value");
-request.setProxy("http://proxy.com", 9000);
-request.setTimeout(5);
+HttpRequest httpRequest = new HttpRequest();
+httpRequest.setUrl("https://localhost:8080");
+httpRequest.basicAuth("username", "password");
+httpRequest.addHeader("key", "value");
+httpRequest.addParameter("key", "value");
+httpRequest.setProxy("http://proxy.com", 9000);
+httpRequest.setTimeout(5);
 
 Http http = HttpFactory.create();
-http.setRequest(request);
+http.setRequest(httpRequest);
 
-Response response = http.send();
+HttpResponse httpResponse = http.send();
 
 ```
 
-As shown above, we created a new http request and expect get response. Tt will trust all certificates if url start
+As shown above, we created a new http Request and expect get httpResponse. It will trust all certificates if url start
 with https.
 
 ## Copyright and license

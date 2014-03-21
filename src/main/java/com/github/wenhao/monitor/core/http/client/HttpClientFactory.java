@@ -2,7 +2,7 @@ package com.github.wenhao.monitor.core.http.client;
 
 import java.util.List;
 
-import com.github.wenhao.monitor.core.http.model.Request;
+import com.github.wenhao.monitor.core.http.model.HttpRequest;
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 
@@ -16,12 +16,12 @@ public class HttpClientFactory
         this.httpClientComponents = httpClientComponents;
     }
 
-    public HttpClient create(Request request)
+    public HttpClient create(HttpRequest httpRequest)
     {
         HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
         for (HttpClientComponent httpClientComponent : httpClientComponents) {
-            if (httpClientComponent.isApplicable(request)) {
-                httpClientComponent.apply(httpClientBuilder, request);
+            if (httpClientComponent.isApplicable(httpRequest)) {
+                httpClientComponent.apply(httpClientBuilder, httpRequest);
             }
         }
         return httpClientBuilder.build();

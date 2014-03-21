@@ -3,7 +3,7 @@ package com.github.wenhao.monitor.core.http.client;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
-import com.github.wenhao.monitor.core.http.model.Request;
+import com.github.wenhao.monitor.core.http.model.HttpRequest;
 import org.junit.Test;
 
 public class ProxyComponentTest
@@ -13,8 +13,8 @@ public class ProxyComponentTest
     public void should_be_able_to_add_proxy() throws Exception
     {
         // given
-        Request request = new Request();
-        request.setProxy("http://localhost", 8080);
+        HttpRequest httpRequest = new HttpRequest();
+        httpRequest.setProxy("http://localhost", 8080);
 
 
         // when
@@ -22,6 +22,6 @@ public class ProxyComponentTest
 
 
         // then
-        assertThat(proxyComponent.isApplicable(request), is(true));
+        assertThat(proxyComponent.isApplicable(httpRequest), is(true));
     }
 }

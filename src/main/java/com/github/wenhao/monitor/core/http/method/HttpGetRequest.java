@@ -3,7 +3,7 @@ package com.github.wenhao.monitor.core.http.method;
 import java.net.URI;
 
 import com.github.wenhao.monitor.core.http.model.HttpMethod;
-import com.github.wenhao.monitor.core.http.model.Request;
+import com.github.wenhao.monitor.core.http.model.HttpRequest;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpUriRequest;
 
@@ -11,14 +11,14 @@ public class HttpGetRequest implements HttpRequestable
 {
 
     @Override
-    public Boolean isApplicable(Request request)
+    public Boolean isApplicable(HttpRequest httpRequest)
     {
-        return request.getHttpMethod().equals(HttpMethod.GET);
+        return httpRequest.getHttpMethod().equals(HttpMethod.GET);
     }
 
     @Override
-    public HttpUriRequest apply(Request request)
+    public HttpUriRequest apply(HttpRequest httpRequest)
     {
-        return new HttpGet(URI.create(request.getUrl()));
+        return new HttpGet(URI.create(httpRequest.getUrl()));
     }
 }

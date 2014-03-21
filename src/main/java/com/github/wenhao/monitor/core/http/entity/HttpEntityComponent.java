@@ -1,11 +1,11 @@
 package com.github.wenhao.monitor.core.http.entity;
 
-import com.github.wenhao.monitor.core.http.model.Request;
+import com.github.wenhao.monitor.core.http.model.HttpRequest;
 import org.apache.http.HttpEntity;
 
 public interface HttpEntityComponent
 {
-    Boolean isApplicable(Request request);
+    Boolean isApplicable(HttpRequest httpRequest);
 
-    HttpEntity apply(Request request);
+    HttpEntity apply(HttpRequest httpRequest);
 }

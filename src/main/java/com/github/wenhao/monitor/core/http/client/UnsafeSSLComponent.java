@@ -2,7 +2,7 @@ package com.github.wenhao.monitor.core.http.client;
 
 import static org.apache.commons.lang3.StringUtils.startsWithAny;
 
-import com.github.wenhao.monitor.core.http.model.Request;
+import com.github.wenhao.monitor.core.http.model.HttpRequest;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.conn.ssl.SSLContextBuilder;
 import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
@@ -12,13 +12,13 @@ public class UnsafeSSLComponent implements HttpClientComponent
 {
 
     @Override
-    public Boolean isApplicable(Request request)
+    public Boolean isApplicable(HttpRequest httpRequest)
     {
-        return startsWithAny(request.getUrl(), "https", "HTTPS");
+        return startsWithAny(httpRequest.getUrl(), "https", "HTTPS");
     }
 
     @Override
-    public void apply(HttpClientBuilder httpClientBuilder, Request request)
+    public void apply(HttpClientBuilder httpClientBuilder, HttpRequest httpRequest)
     {
         SSLContextBuilder sslContextBuilder = new SSLContextBuilder();
         try {

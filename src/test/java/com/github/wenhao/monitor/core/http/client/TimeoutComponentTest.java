@@ -3,7 +3,7 @@ package com.github.wenhao.monitor.core.http.client;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
-import com.github.wenhao.monitor.core.http.model.Request;
+import com.github.wenhao.monitor.core.http.model.HttpRequest;
 import org.junit.Test;
 
 public class TimeoutComponentTest
@@ -13,14 +13,14 @@ public class TimeoutComponentTest
     public void should_be_able_to_add_timeout() throws Exception
     {
         // given
-        Request request = new Request();
-        request.setTimeout(50);
+        HttpRequest httpRequest = new HttpRequest();
+        httpRequest.setTimeout(50);
 
 
         // when
         TimeoutComponent timeoutComponent = new TimeoutComponent();
 
         // then
-        assertThat(timeoutComponent.isApplicable(request), is(true));
+        assertThat(timeoutComponent.isApplicable(httpRequest), is(true));
     }
 }

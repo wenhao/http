@@ -3,7 +3,7 @@ package com.github.wenhao.monitor.core.http.client;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
-import com.github.wenhao.monitor.core.http.model.Request;
+import com.github.wenhao.monitor.core.http.model.HttpRequest;
 import org.junit.Test;
 
 public class UnsafeSSLComponentTest
@@ -13,13 +13,13 @@ public class UnsafeSSLComponentTest
     public void should_be_able_to_trust_all_ssl() throws Exception
     {
         // given
-        Request request = new Request();
-        request.setUrl("https://localhost");
+        HttpRequest httpRequest = new HttpRequest();
+        httpRequest.setUrl("https://localhost");
 
         // when
         UnsafeSSLComponent unsafeSSLComponent = new UnsafeSSLComponent();
 
         // then
-        assertThat(unsafeSSLComponent.isApplicable(request), is(true));
+        assertThat(unsafeSSLComponent.isApplicable(httpRequest), is(true));
     }
 }

@@ -2,21 +2,21 @@ package com.github.wenhao.monitor.core.http.client;
 
 import static org.apache.commons.collections.CollectionUtils.isNotEmpty;
 
-import com.github.wenhao.monitor.core.http.model.Request;
+import com.github.wenhao.monitor.core.http.model.HttpRequest;
 import org.apache.http.impl.client.HttpClientBuilder;
 
 public class HeaderComponent implements HttpClientComponent
 {
 
     @Override
-    public Boolean isApplicable(Request request)
+    public Boolean isApplicable(HttpRequest httpRequest)
     {
-        return isNotEmpty(request.getHeaders());
+        return isNotEmpty(httpRequest.getHeaders());
     }
 
     @Override
-    public void apply(HttpClientBuilder httpClientBuilder, Request request)
+    public void apply(HttpClientBuilder httpClientBuilder, HttpRequest httpRequest)
     {
-        httpClientBuilder.setDefaultHeaders(request.getHeaders());
+        httpClientBuilder.setDefaultHeaders(httpRequest.getHeaders());
     }
 }
