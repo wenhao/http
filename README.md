@@ -6,5 +6,3 @@ UPD, database connection, web service, REST etc.
 
 ##Features:
 * support HTTP protocol(restful service, web service, etc.).
-* support TCP/UDP protocol.
-

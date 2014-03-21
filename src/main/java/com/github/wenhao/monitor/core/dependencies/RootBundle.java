@@ -10,7 +10,6 @@ public class RootBundle extends BootstrapperBundle
     protected void bootstrap()
     {
         install(HttpModule.class);
-        install(TcpModule.class);
         install(BuildinBundle.LIST);
     }
 }
