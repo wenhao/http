@@ -3,6 +3,7 @@ apply plugin: 'maven'
 apply plugin: 'java'
 apply plugin: 'checkstyle'
 apply plugin: "jacoco"
+apply plugin: 'signing'
 
 group = 'com.github.wenhao'
 version '0.0.1-SNAPSHOT'
@@ -58,6 +59,11 @@ dependencies {
         archives sourcesJar
         archives javadocJar
     }
+
+    signing {
+        required { gradle.taskGraph.hasTask("uploadArchives") }
+        sign configurations.archives
+    }
 }
 
 checkstyle {
@@ -83,5 +89,45 @@ jacocoTestReport {
         xml.enabled false
         csv.enabled false
         html.enabled true
+    }
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/content/repositories/snapshots") {
+                authentication(userName: sonatypeUsername, password: sonatypePassword)
+            }
+
+            pom.project {
+                name project.name
+                packaging 'jar'
+                description 'monitor-core is a framework, mainly focusing on testing connection over network protocol.'
+                url 'https://github.com/wenhao/monitor-core'
+
+                scm {
+                    url 'scm:git@github.com:wenhao/monitor-core.git'
+                    connection 'scm:git@github.com:wenhao/monitor-core.git'
+                    developerConnection 'git@github.com:wenhao/monitor-core.git'
+                }
+
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        distribution 'repo'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'wenhao'
+                        name 'Wen Hao'
+                    }
+                }
+            }
+        }
     }
 }
