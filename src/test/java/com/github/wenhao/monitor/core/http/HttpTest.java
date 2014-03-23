@@ -62,8 +62,7 @@ public class HttpTest
                 // when
                 httpRequest.setUrl(HOST);
                 httpRequest.setMethod(HttpMethod.GET);
-                http.setHttpRequest(httpRequest);
-                HttpResponse httpResponse = http.send();
+                HttpResponse httpResponse = http.send(httpRequest);
 
                 // then
                 expectResult(httpResponse, 200, "test");
@@ -82,8 +81,7 @@ public class HttpTest
                 // when
                 httpRequest.setUrl(HOST);
                 httpRequest.setMethod(HttpMethod.POST);
-                http.setHttpRequest(httpRequest);
-                HttpResponse httpResponse = http.send();
+                HttpResponse httpResponse = http.send(httpRequest);
 
                 // then
                 expectResult(httpResponse, 200, "test");
@@ -108,8 +106,7 @@ public class HttpTest
                 httpRequest.setUrl(HOST);
                 httpRequest.setMethod(HttpMethod.POST);
                 httpRequest.basiAuth("test", "test");
-                http.setHttpRequest(httpRequest);
-                HttpResponse httpResponse = http.send();
+                HttpResponse httpResponse = http.send(httpRequest);
 
                 // then
                 expectResult(httpResponse, 200, "test");
@@ -133,8 +130,7 @@ public class HttpTest
                 httpRequest.setUrl(HOST);
                 httpRequest.setMethod(HttpMethod.POST);
                 httpRequest.addParameter("test", "test");
-                http.setHttpRequest(httpRequest);
-                HttpResponse httpResponse = http.send();
+                HttpResponse httpResponse = http.send(httpRequest);
 
                 // then
                 expectResult(httpResponse, 200, "test");
@@ -159,8 +155,7 @@ public class HttpTest
                 httpRequest.setMethod(HttpMethod.POST);
                 httpRequest.setBody("test");
                 httpRequest.setTimeout(200);
-                http.setHttpRequest(httpRequest);
-                HttpResponse httpResponse = http.send();
+                HttpResponse httpResponse = http.send(httpRequest);
 
                 // then
                 expectResult(httpResponse, 200, "test");
@@ -180,11 +175,11 @@ public class HttpTest
         given(httpClientFactory.create(any(HttpRequest.class))).willReturn(httpClient);
 
         // when
-        Http httpRequest = new Http(httpClientFactory, httpRequestFactory);
-        HttpResponse httpResponse = httpRequest.send();
+        Http http = new Http(httpClientFactory, httpRequestFactory);
+        HttpResponse httpResponse = http.send(new HttpRequest());
 
         // then
-        expectResult(httpResponse, 400, "Bad HttpRequest");
+        expectResult(httpResponse, 400, "Bad Request");
     }
 
     private void expectResult(HttpResponse httpResponse, Integer statusCode, String content)

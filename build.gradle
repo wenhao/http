@@ -66,6 +66,10 @@ dependencies {
     }
 }
 
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.11'
+}
+
 checkstyle {
     configFile = file('config/checkstyle/checkstyle.xml')
 }

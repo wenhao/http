@@ -14,10 +14,9 @@ import org.apache.http.impl.client.BasicResponseHandler;
 public class Http
 {
 
-    private static final String BAD_REQUEST = "Bad HttpRequest";
+    private static final String BAD_REQUEST = "Bad Request";
     private HttpClientFactory httpClientFactory;
     private HttpRequestFactory httpRequestFactory;
-    private HttpRequest httpRequest;
 
     public Http(HttpClientFactory httpClientFactory, HttpRequestFactory httpRequestFactory)
     {
@@ -25,7 +24,7 @@ public class Http
         this.httpRequestFactory = httpRequestFactory;
     }
 
-    public HttpResponse send()
+    public HttpResponse send(HttpRequest httpRequest)
     {
         HttpClient httpClient = httpClientFactory.create(httpRequest);
         HttpUriRequest httpUriRequest = httpRequestFactory.create(httpRequest);
@@ -56,8 +55,4 @@ public class Http
         }
     }
 
-    public void setHttpRequest(HttpRequest httpRequest)
-    {
-        this.httpRequest = httpRequest;
-    }
 }
