@@ -105,7 +105,7 @@ public class HttpTest
                 // when
                 httpRequest.setUrl(HOST);
                 httpRequest.setMethod(HttpMethod.POST);
-                httpRequest.basiAuth("test", "test");
+                httpRequest.basicAuth("test", "test");
                 HttpResponse httpResponse = http.send(httpRequest);
 
                 // then

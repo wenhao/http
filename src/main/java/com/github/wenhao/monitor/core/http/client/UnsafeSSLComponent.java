@@ -13,7 +13,7 @@ public class UnsafeSSLComponent implements HttpClientComponent
     @Override
     public Boolean isApplicable(HttpRequest httpRequest)
     {
-        return startsWithAny(httpRequest.getUrl(), "https", "HTTPS");
+        return httpRequest.getTrustAll() && startsWithAny(httpRequest.getUrl(), "https", "HTTPS");
     }
 
     @Override

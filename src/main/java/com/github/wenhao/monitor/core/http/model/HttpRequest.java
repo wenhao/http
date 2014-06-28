@@ -21,11 +21,13 @@ public class HttpRequest
     private List<NameValuePair> parameters;
     private HttpHost proxy;
     private Integer timeout;
+    private Boolean trustAll;
 
     public HttpRequest()
     {
         this.parameters = new ArrayList<NameValuePair>();
         this.headers = new ArrayList<Header>();
+        this.trustAll = false;
     }
 
     public void setUrl(String url)
@@ -78,7 +80,7 @@ public class HttpRequest
         this.headers.add(new BasicHeader(key, value));
     }
 
-    public void basiAuth(String username, String password)
+    public void basicAuth(String username, String password)
     {
         String encoding = encodeBase64String((username + ":" + password).getBytes());
         this.addHeader("Authorization", "Basic " + encoding);
@@ -102,5 +104,15 @@ public class HttpRequest
     public void setTimeout(Integer timeout)
     {
         this.timeout = timeout;
+    }
+
+    public Boolean getTrustAll()
+    {
+        return trustAll;
+    }
+
+    public void trustAll(Boolean trustAll)
+    {
+        this.trustAll = trustAll;
     }
 }
