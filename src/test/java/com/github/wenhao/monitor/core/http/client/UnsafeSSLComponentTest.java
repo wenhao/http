@@ -21,6 +21,6 @@ public class UnsafeSSLComponentTest
         UnsafeSSLComponent unsafeSSLComponent = new UnsafeSSLComponent();
 
         // then
-        assertThat(unsafeSSLComponent.isApplicable(httpRequest), is(false));
+        assertThat(unsafeSSLComponent.isApplicable(httpRequest), is(true));
     }
 }
