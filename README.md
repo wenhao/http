@@ -59,6 +59,13 @@ HttpResponse httpResponse = http.send();
 
 ```
 
+### Spring Integration
+
+```xml
+<bean id="http" class="com.github.wenhao.monitor.core.http.HttpFactory" factory-method="create" />
+
+```
+
 ### Custom Parameter
 
 ```java
@@ -107,7 +114,7 @@ with https.
 ### Timeouts
 You can set custom connection and socket timeout values (in milliseconds):
 ```java
-httpRequest.setTimeout(50);
+httpRequest.setTimeout(5000);
 
 ```
 
