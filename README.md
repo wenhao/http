@@ -97,6 +97,7 @@ httpRequest.setMethod(POST); // GET/HEAD/POST/PUT/PATCH/OPTIONS/DELETE
 Upon receiving a response http returns the result in the form of an Object, this object should always have the same keys for each language regarding to the response details.
 
 .getStatus() - HTTP Response Status Code (Example 200)
+
 .getContent() - Parsed response body.
 
 As shown above, we created a new http Request and expect get httpResponse. It will trust all certificates if url start
@@ -104,7 +105,7 @@ with https.
 
 ## Advanced Configuration
 ### Timeouts
-You can set custom connection and socket timeout values (in seconds):
+You can set custom connection and socket timeout values (in milliseconds):
 ```java
 httpRequest.setTimeout(50);
 
