@@ -1,11 +1,6 @@
-[![Build Status](https://travis-ci.org/wenhao/monitor-core.png?branch=master)](https://travis-ci.org/wenhao/monitor-core)
+[![Build Status](https://travis-ci.org/wenhao/http.png?branch=master)](https://travis-ci.org/wenhao/http)
 
-## [Monitor-core](https://github.com/wenhao/monitor-core)
-monitor-core is a framework, mainly focusing on monitoring over network protocol, especially test HTTP, TCP,
-UPD, database connection, web service, REST etc.
-
-## Features
-* support HTTP protocol(restful service, web service, etc.).
+## [http](https://github.com/wenhao/http)
 
 ## Usage
 
@@ -15,13 +10,13 @@ monitor-code support multiple network protocol.
 
 ### dependency
 
-monitor-core has been published on Maven repository, so you can refer to it directly in your dependency. This is core
+http has been published on Maven repository, so you can refer to it directly in your dependency. This is core
 dependency
 
 ```xml
 <dependency>
   <groupId>com.github.wenhao</groupId>
-  <artifactId>monitor-core</artifactId>
+  <artifactId>http</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 </dependency>
 ```
@@ -35,7 +30,7 @@ repositories {
 
 dependencies {
   testCompile(
-    "com.github.wenhao:monitor-core:0.0.1-SNAPSHOT",
+    "com.github.wenhao:http:0.0.1-SNAPSHOT",
   )
 }
 ```
@@ -69,7 +64,7 @@ Copyright 2014 Wen Hao
 
 Licensed under [Apache License][1]
 
-[1]: https://github.com/wenhao/monitor-core/blob/master/LICENSE
+[1]: https://github.com/wenhao/http/blob/master/LICENSE
 
 
 
