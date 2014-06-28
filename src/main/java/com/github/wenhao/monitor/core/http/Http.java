@@ -10,10 +10,13 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.impl.client.BasicResponseHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Http
 {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(Http.class);
     private static final String BAD_REQUEST = "Bad Request";
     private HttpClientFactory httpClientFactory;
     private HttpRequestFactory httpRequestFactory;
@@ -32,9 +35,9 @@ public class Http
         try {
             return execute(httpClient, httpUriRequest);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage(), e);
+            return new HttpResponse(400, BAD_REQUEST);
         }
-        return new HttpResponse(400, BAD_REQUEST);
     }
 
     private HttpResponse execute(HttpClient httpClient, HttpUriRequest httpUriRequest) throws IOException
