@@ -108,13 +108,13 @@ uploadArchives {
             pom.project {
                 name project.name
                 packaging 'jar'
-                description 'monitor-core is a framework, mainly focusing on testing connection over network protocol.'
-                url 'https://github.com/wenhao/monitor-core'
+                description 'http is a framework, mainly focusing on testing connection over network protocol.'
+                url 'https://github.com/wenhao/http'
 
                 scm {
-                    url 'scm:git@github.com:wenhao/monitor-core.git'
-                    connection 'scm:git@github.com:wenhao/monitor-core.git'
-                    developerConnection 'git@github.com:wenhao/monitor-core.git'
+                    url 'scm:git@github.com:wenhao/http.git'
+                    connection 'scm:git@github.com:wenhao/http.git'
+                    developerConnection 'git@github.com:wenhao/http.git'
                 }
 
                 licenses {
