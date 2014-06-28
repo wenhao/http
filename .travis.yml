@@ -5,5 +5,8 @@ jdk:
   - openjdk7
   - openjdk6
 
+install:
+  - TERM=dumb ./gradlew assemble
+
 script:
-  "gradle check -i"
+  - TERM=dumb ./gradlew check
