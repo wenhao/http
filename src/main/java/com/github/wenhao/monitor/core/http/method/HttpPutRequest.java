@@ -1,9 +1,10 @@
 package com.github.wenhao.monitor.core.http.method;
 
-import com.github.wenhao.monitor.core.http.entity.HttpEntityFactory;
-import com.github.wenhao.monitor.core.http.model.HttpRequest;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpUriRequest;
+
+import com.github.wenhao.monitor.core.http.entity.HttpEntityFactory;
+import com.github.wenhao.monitor.core.http.model.HttpRequest;
 
 import static com.github.wenhao.monitor.core.http.model.HttpMethod.PUT;
 

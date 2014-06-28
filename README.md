@@ -70,30 +70,14 @@ httpRequest.addParameter("key", "value");
 ### Custom Entity Body
 
 ```java
-HttpRequest httpRequest = new HttpRequest();
-httpRequest.setUrl("https://localhost:8080");
-httpRequest.setMethod(POST);
 httpRequest.setBody("body");
-
-Http http = HttpFactory.create();
-http.setRequest(httpRequest);
-
-HttpResponse httpResponse = http.send();
 
 ```
 
 ### Basic Authentication
 
 ```java
-HttpRequest httpRequest = new HttpRequest();
-httpRequest.setUrl("https://localhost:8080");
-httpRequest.setMethod(POST);
 httpRequest.basicAuth("username", "password");
-
-Http http = HttpFactory.create();
-http.setRequest(httpRequest);
-
-HttpResponse httpResponse = http.send();
 
 ```
 

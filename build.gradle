@@ -16,7 +16,7 @@ repositories {
 
 project.ext {
     silkVersion = '0.6'
-    httpVersion = '4.3.2'
+    httpVersion = '4.3.4'
     commonsVersion = '3.2.1'
     netVersion = '3.3'
     ioVersion = '2.4'
