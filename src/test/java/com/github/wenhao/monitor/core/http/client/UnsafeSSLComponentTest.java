@@ -1,7 +1,7 @@
 package com.github.wenhao.monitor.core.http.client;
 
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 
 import com.github.wenhao.monitor.core.http.model.HttpRequest;
 import org.junit.Test;
@@ -15,11 +15,12 @@ public class UnsafeSSLComponentTest
         // given
         HttpRequest httpRequest = new HttpRequest();
         httpRequest.setUrl("https://localhost");
+        httpRequest.trustAll(true);
 
         // when
         UnsafeSSLComponent unsafeSSLComponent = new UnsafeSSLComponent();
 
         // then
-        assertThat(unsafeSSLComponent.isApplicable(httpRequest), is(true));
+        assertThat(unsafeSSLComponent.isApplicable(httpRequest), is(false));
     }
 }
