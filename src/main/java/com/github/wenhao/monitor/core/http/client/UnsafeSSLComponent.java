@@ -5,7 +5,6 @@ import static org.apache.commons.lang3.StringUtils.startsWithAny;
 import com.github.wenhao.monitor.core.http.model.HttpRequest;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.conn.ssl.SSLContextBuilder;
-import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
 import org.apache.http.impl.client.HttpClientBuilder;
 
 public class UnsafeSSLComponent implements HttpClientComponent
@@ -22,7 +21,7 @@ public class UnsafeSSLComponent implements HttpClientComponent
     {
         SSLContextBuilder sslContextBuilder = new SSLContextBuilder();
         try {
-            sslContextBuilder.loadTrustMaterial(null, new TrustSelfSignedStrategy());
+            sslContextBuilder.loadTrustMaterial(null, new TrustAllSignedStrategy());
             httpClientBuilder.setSSLSocketFactory(new SSLConnectionSocketFactory(sslContextBuilder.build()));
         } catch (Exception e) {
             e.printStackTrace();
