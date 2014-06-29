@@ -1,5 +1,6 @@
 package com.github.wenhao.http.core.method;
 
+import org.apache.http.Header;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpUriRequest;
 
@@ -18,6 +19,11 @@ public class HttpDeleteRequest implements HttpRequestable
     @Override
     public HttpUriRequest apply(HttpRequest httpRequest)
     {
-        return new HttpDelete(httpRequest.getUrl());
+        HttpDelete httpDelete = new HttpDelete(httpRequest.getUrl());
+        for (Header header : httpRequest.getHeaders()) {
+            httpDelete.setHeader(header);
+        }
+
+        return httpDelete;
     }
 }

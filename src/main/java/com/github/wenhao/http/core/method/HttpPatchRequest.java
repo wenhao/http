@@ -28,6 +28,6 @@ public class HttpPatchRequest implements HttpRequestable
     {
         HttpPatch httpPatch = new HttpPatch();
         httpPatch.setEntity(httpEntityFactory.create(httpRequest));
-        return null;
+        return httpPatch;
     }
 }

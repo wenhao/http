@@ -28,6 +28,6 @@ public class HttpPutRequest implements HttpRequestable
     {
         HttpPut httpPut = new HttpPut();
         httpPut.setEntity(httpEntityFactory.create(httpRequest));
-        return null;
+        return httpPut;
     }
 }

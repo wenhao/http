@@ -2,6 +2,7 @@ package com.github.wenhao.http.core.method;
 
 import java.net.URI;
 
+import org.apache.http.Header;
 import org.apache.http.client.methods.HttpOptions;
 import org.apache.http.client.methods.HttpUriRequest;
 
@@ -21,6 +22,11 @@ public class HttpOptionsRequest implements HttpRequestable
     @Override
     public HttpUriRequest apply(HttpRequest httpRequest)
     {
-        return new HttpOptions(URI.create(httpRequest.getUrl()));
+        HttpOptions httpOptions = new HttpOptions(URI.create(httpRequest.getUrl()));
+        for (Header header : httpRequest.getHeaders()) {
+            httpOptions.setHeader(header);
+        }
+
+        return httpOptions;
     }
 }
