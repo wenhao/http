@@ -2,12 +2,12 @@
 
 ## [http](https://github.com/wenhao/http)
 Make GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS requests
-It supports form parameters, file uploads and custom body entities
-Easily add route parameters without ugly string concatenations
-Supports gzip
-Supports Basic Authentication natively
-Customizable timeout
-Customizable headers for every request
+* It supports form parameters, file uploads and custom body entities
+* Easily add route parameters without ugly string concatenations
+* Supports gzip
+* Supports Basic Authentication natively
+* Customizable timeout
+* Customizable headers for every request
 
 ## Usage
 
@@ -62,7 +62,7 @@ HttpResponse httpResponse = http.send();
 ### Spring Integration
 
 ```xml
-<bean id="http" class="com.github.wenhao.monitor.core.http.HttpFactory" factory-method="create" />
+<bean id="http" class="com.github.wenhao.http.http.HttpFactory" factory-method="create" />
 
 ```
 
