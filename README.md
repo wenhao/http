@@ -62,7 +62,7 @@ HttpResponse httpResponse = http.send();
 ### Spring Integration
 
 ```xml
-<bean id="http" class="com.github.wenhao.http.http.HttpFactory" factory-method="create" />
+<bean id="http" class="com.github.wenhao.http.core.HttpFactory" factory-method="create" />
 
 ```
 

@@ -54,7 +54,7 @@ public class HttpTest
     @Test
     public void should_be_able_to_get_response_via_get_method() throws Exception
     {
-        running(httpserver, new java.lang.Runnable()
+        running(httpserver, new Runnable()
         {
             @Override
             public void run() throws Exception
@@ -73,7 +73,7 @@ public class HttpTest
     @Test
     public void should_be_able_to_get_response_via_post_method() throws Exception
     {
-        running(httpserver, new java.lang.Runnable()
+        running(httpserver, new Runnable()
         {
             @Override
             public void run() throws Exception
@@ -97,7 +97,7 @@ public class HttpTest
         // given
         httpServerWithHeader.request(eq(header("Authorization"), "Basic dGVzdDp0ZXN0")).response("test");
 
-        running(httpServerWithHeader, new java.lang.Runnable()
+        running(httpServerWithHeader, new Runnable()
         {
             @Override
             public void run() throws Exception
@@ -121,7 +121,7 @@ public class HttpTest
         // given
         httpServerWithParameter.request(eq(form("test"), "test")).response("test");
 
-        running(httpServerWithParameter, new java.lang.Runnable()
+        running(httpServerWithParameter, new Runnable()
         {
             @Override
             public void run() throws Exception
@@ -145,7 +145,7 @@ public class HttpTest
         // given
         httpServerWithBody.request(by("test")).response("test");
 
-        running(httpServerWithBody, new java.lang.Runnable()
+        running(httpServerWithBody, new Runnable()
         {
             @Override
             public void run() throws Exception
