@@ -1,11 +1,10 @@
 package com.github.wenhao.http.core.entity;
 
-import static org.apache.commons.collections.CollectionUtils.isNotEmpty;
-import static org.apache.http.Consts.UTF_8;
-
 import com.github.wenhao.http.core.model.HttpRequest;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+
+import static org.apache.http.Consts.UTF_8;
 
 public class ParameterEntity implements HttpEntityComponent
 {
@@ -13,7 +12,7 @@ public class ParameterEntity implements HttpEntityComponent
     @Override
     public Boolean isApplicable(HttpRequest httpRequest)
     {
-        return isNotEmpty(httpRequest.getParameters());
+        return !httpRequest.getParameters().isEmpty();
     }
 
     @Override

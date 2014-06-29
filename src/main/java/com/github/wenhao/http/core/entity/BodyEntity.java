@@ -1,18 +1,17 @@
 package com.github.wenhao.http.core.entity;
 
-import static org.apache.commons.lang3.StringUtils.isNoneBlank;
-import static org.apache.http.entity.ContentType.DEFAULT_TEXT;
-
 import com.github.wenhao.http.core.model.HttpRequest;
 import org.apache.http.HttpEntity;
 import org.apache.http.entity.StringEntity;
+
+import static org.apache.http.entity.ContentType.DEFAULT_TEXT;
 
 public class BodyEntity implements HttpEntityComponent
 {
     @Override
     public Boolean isApplicable(HttpRequest httpRequest)
     {
-        return isNoneBlank(httpRequest.getBody());
+        return httpRequest.getBody() != null && !httpRequest.getBody().equals("");
     }
 
     @Override

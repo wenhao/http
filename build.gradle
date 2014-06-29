@@ -17,9 +17,6 @@ repositories {
 project.ext {
     silkVersion = '0.6'
     httpVersion = '4.3.4'
-    commonsVersion = '3.2.1'
-    netVersion = '3.3'
-    ioVersion = '2.4'
     slf4jVersion = '1.7.6'
 
     junitVersion = '4.11'
@@ -30,12 +27,8 @@ project.ext {
 
 dependencies {
     compile(
-            "se.jbee:silk-di:$silkVersion",
-            "commons-net:commons-net:$netVersion",
-            "commons-io:commons-io:$ioVersion",
-            "org.apache.commons:commons-lang3:$commonsVersion",
-            "commons-collections:commons-collections:$commonsVersion",
             "org.apache.httpcomponents:httpclient:$httpVersion",
+            "se.jbee:silk-di:$silkVersion",
             "org.slf4j:slf4j-api:$slf4jVersion"
     )
 

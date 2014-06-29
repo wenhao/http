@@ -1,7 +1,5 @@
 package com.github.wenhao.http.core.client;
 
-import static org.apache.commons.lang3.StringUtils.startsWithAny;
-
 import com.github.wenhao.http.core.model.HttpRequest;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.conn.ssl.SSLContextBuilder;
@@ -13,7 +11,7 @@ public class UnsafeSSLComponent implements HttpClientComponent
     @Override
     public Boolean isApplicable(HttpRequest httpRequest)
     {
-        return httpRequest.getTrustAll() && startsWithAny(httpRequest.getUrl(), "https", "HTTPS");
+        return httpRequest.getTrustAll() && (httpRequest.getUrl().startsWith("https") || httpRequest.getUrl().startsWith("HTTPS"));
     }
 
     @Override
