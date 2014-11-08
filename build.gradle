@@ -6,7 +6,7 @@ apply plugin: "jacoco"
 apply plugin: 'signing'
 
 group = 'com.github.wenhao'
-version '0.0.1-SNAPSHOT'
+version '1.0.0'
 sourceCompatibility = 1.6
 targetCompatibility = 1.6
 
@@ -96,14 +96,18 @@ uploadArchives {
         mavenDeployer {
             beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 
-            repository(url: "https://oss.sonatype.org/content/repositories/snapshots") {
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: sonatypeUsername, password: sonatypePassword)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
                 authentication(userName: sonatypeUsername, password: sonatypePassword)
             }
 
             pom.project {
                 name project.name
                 packaging 'jar'
-                description 'http is a framework, mainly focusing on testing connection over network protocol.'
+                description 'Simplified, lightweight HTTP client library, a wrapper for apache httpclient.'
                 url 'https://github.com/wenhao/http'
 
                 scm {
@@ -124,6 +128,7 @@ uploadArchives {
                     developer {
                         id 'wenhao'
                         name 'Wen Hao'
+                        email 'wenhao@126.com'
                     }
                 }
             }
