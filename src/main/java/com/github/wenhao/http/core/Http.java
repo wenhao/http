@@ -42,9 +42,9 @@ public class Http
 
     private HttpResponse execute(HttpClient httpClient, HttpUriRequest httpUriRequest) throws IOException
     {
-        org.apache.http.HttpResponse httpHttpResponse = httpClient.execute(httpUriRequest);
-        int statusCode = httpHttpResponse.getStatusLine().getStatusCode();
-        String content = parseResponse(httpHttpResponse);
+        org.apache.http.HttpResponse httpResponse = httpClient.execute(httpUriRequest);
+        int statusCode = httpResponse.getStatusLine().getStatusCode();
+        String content = parseResponse(httpResponse);
         return new HttpResponse(statusCode, content);
     }
 

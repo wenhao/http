@@ -4,9 +4,13 @@ import com.github.wenhao.http.core.model.HttpRequest;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.conn.ssl.SSLContextBuilder;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class UnsafeSSLComponent implements HttpClientComponent
 {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(UnsafeSSLComponent.class);
 
     @Override
     public Boolean isApplicable(HttpRequest httpRequest)
@@ -22,7 +26,7 @@ public class UnsafeSSLComponent implements HttpClientComponent
             sslContextBuilder.loadTrustMaterial(null, new TrustAllSignedStrategy());
             httpClientBuilder.setSSLSocketFactory(new SSLConnectionSocketFactory(sslContextBuilder.build()));
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.debug("Fail to trust all certificates", e);
         }
     }
 }
