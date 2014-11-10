@@ -2,12 +2,17 @@
 
 ## [http](https://github.com/wenhao/http)
 Make GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS requests
+* Support for all the commonly used MIME types like JSON, XML, ATOM and YAML
+* Enable both HTTP and HTTPS (SSL) invocation of web services
 * It supports form parameters, file uploads and custom body entities
 * Easily add route parameters without ugly string concatenations
-* Supports gzip
 * Supports Basic Authentication natively
-* Customizable timeout
 * Customizable headers for every request
+* Full awareness of proxies.
+* Customizable timeout
+* Supports gzip
+* Good Test Coverage via a comprehensive set of developer tests, providing assurance of the library's quality
+* The number of external dependencies is minimised (currently: slf4j, httpclient).
 
 ## Usage
 
