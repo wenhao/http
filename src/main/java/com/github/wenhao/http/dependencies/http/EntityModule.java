@@ -1,6 +1,7 @@
 package com.github.wenhao.http.dependencies.http;
 
 import com.github.wenhao.http.core.entity.BodyEntity;
+import com.github.wenhao.http.core.entity.FileEntity;
 import com.github.wenhao.http.core.entity.HttpEntityComponent;
 import com.github.wenhao.http.core.entity.HttpEntityFactory;
 import com.github.wenhao.http.core.entity.ParameterEntity;
@@ -14,8 +15,10 @@ public class EntityModule extends BinderModule
     {
         construct(BodyEntity.class);
         construct(ParameterEntity.class);
+        construct(FileEntity.class);
         multibind(HttpEntityComponent.class).to(BodyEntity.class);
         multibind(HttpEntityComponent.class).to(ParameterEntity.class);
+        multibind(HttpEntityComponent.class).to(FileEntity.class);
         construct(HttpEntityFactory.class);
     }
 }

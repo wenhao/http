@@ -76,8 +76,8 @@ HttpResponse httpResponse = http.send(httpRequest);
 ```java
 public class HttpService
 {
-  @Autowired
-  private Http http;
+    @Autowired
+    private Http http;
 }
 ```
 
@@ -92,6 +92,18 @@ HttpRequest httpRequest = new HttpRequest()
 
 ```
 
+###File Uploads
+
+Creating multipart requests with Java is trivial, simply pass along a File Object as a field:
+
+```java
+HttpRequest httpRequest = new HttpRequest()
+  .host("https://localhost:8080")
+  .method(POST)
+  .parameter("key", "value")
+  .file(new File("/tmp/file"));
+
+```
 
 ### Custom Entity Body
 

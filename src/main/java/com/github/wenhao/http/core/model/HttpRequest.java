@@ -1,5 +1,6 @@
 package com.github.wenhao.http.core.model;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class HttpRequest
     private HttpHost proxy;
     private Integer timeout;
     private Boolean trustAll;
+    private File file;
 
     public HttpRequest()
     {
@@ -122,6 +124,17 @@ public class HttpRequest
     public HttpRequest trustAll(Boolean trustAll)
     {
         this.trustAll = trustAll;
+        return this;
+    }
+
+    public File getFile()
+    {
+        return file;
+    }
+
+    public HttpRequest file(File file)
+    {
+        this.file = file;
         return this;
     }
 }
