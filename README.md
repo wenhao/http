@@ -27,6 +27,7 @@ dependency
 </dependency>
 ```
 
+#### With Gradle
 A gradle example is as follow:
 
 ```groovy
@@ -48,14 +49,16 @@ here is a basic POST request that will explain everything:
 
 
 ```java
-HttpRequest httpRequest = new HttpRequest();
-httpRequest.setUrl("https://localhost:8080");
-httpRequest.setMethod(POST);
+HttpRequest httpRequest = new HttpRequest()
+  .host("https://localhost:8080")
+  .method(POST)
+  .header("accept", "application/json")
+  .parameter("key", "value")
+  .timeout(5000);
 
 Http http = HttpFactory.create();
-http.setRequest(httpRequest);
 
-HttpResponse httpResponse = http.send();
+HttpResponse httpResponse = http.send(httpRequest);
 
 ```
 
@@ -65,11 +68,22 @@ HttpResponse httpResponse = http.send();
 <bean id="http" class="com.github.wenhao.http.core.HttpFactory" factory-method="create" />
 
 ```
+```java
+public class HttpService
+{
+  @Autowired
+  private Http http;
+}
+```
 
 ### Custom Parameter
 
 ```java
-httpRequest.addParameter("key", "value");
+HttpRequest httpRequest = new HttpRequest()
+  .host("https://localhost:8080")
+  .method(POST)
+  .parameter("key", "value")
+  .parameter("parameter", "value");
 
 ```
 
@@ -77,14 +91,21 @@ httpRequest.addParameter("key", "value");
 ### Custom Entity Body
 
 ```java
-httpRequest.setBody("body");
+HttpRequest httpRequest = new HttpRequest()
+  .host("https://localhost:8080")
+  .method(POST)
+  .header("accept", "application/json")
+  .body("body");
 
 ```
 
 ### Basic Authentication
 
 ```java
-httpRequest.basicAuth("username", "password");
+HttpRequest httpRequest = new HttpRequest()
+  .host("https://localhost:8080")
+  .method(POST)
+  .basicAuth("username", "password");
 
 ```
 
@@ -94,8 +115,8 @@ You start building your request by creating a HttpRequest object using one of th
 
 ```java
 HttpRequest httpRequest = new HttpRequest();
-httpRequest.setUrl("https://localhost:8080");
-httpRequest.setMethod(POST); // GET/HEAD/POST/PUT/PATCH/OPTIONS/DELETE
+  .host("https://localhost:8080")
+  .method(POST); // GET/HEAD/POST/PUT/PATCH/OPTIONS/DELETE
 
 ```
 
@@ -114,14 +135,14 @@ with https.
 ### Timeouts
 You can set custom connection and socket timeout values (in milliseconds):
 ```java
-httpRequest.setTimeout(5000);
+httpRequest.timeout(5000);
 
 ```
 
 ### Request Headers
 You can add headers that will be sent on every request:
 ```java
-httpRequest.addHeader("key", "value");
+httpRequest.header("key", "value");
 
 ```
 

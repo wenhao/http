@@ -14,7 +14,7 @@ public class ProxyComponentTest
     {
         // given
         HttpRequest httpRequest = new HttpRequest();
-        httpRequest.setProxy("http://localhost", 8080);
+        httpRequest.proxy("http://localhost", 8080);
 
 
         // when

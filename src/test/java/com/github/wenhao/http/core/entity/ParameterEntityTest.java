@@ -14,7 +14,7 @@ public class ParameterEntityTest
     {
         // given
         HttpRequest httpRequest = new HttpRequest();
-        httpRequest.addParameter("test", "test");
+        httpRequest.parameter("test", "test");
 
 
         // when

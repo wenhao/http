@@ -14,7 +14,7 @@ public class BodyEntityTest
     {
         // given
         HttpRequest httpRequest = new HttpRequest();
-        httpRequest.setBody("teset");
+        httpRequest.body("teset");
 
 
         // when

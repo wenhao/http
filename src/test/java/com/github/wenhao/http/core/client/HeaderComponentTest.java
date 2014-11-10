@@ -14,7 +14,7 @@ public class HeaderComponentTest
     {
         // given
         HttpRequest httpRequest = new HttpRequest();
-        httpRequest.addHeader("test", "test");
+        httpRequest.header("test", "test");
 
 
         // when

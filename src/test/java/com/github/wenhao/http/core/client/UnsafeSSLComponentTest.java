@@ -14,7 +14,7 @@ public class UnsafeSSLComponentTest
     {
         // given
         HttpRequest httpRequest = new HttpRequest();
-        httpRequest.setUrl("https://localhost");
+        httpRequest.host("https://localhost");
         httpRequest.trustAll(true);
 
         // when

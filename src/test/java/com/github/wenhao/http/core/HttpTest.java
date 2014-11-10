@@ -60,8 +60,8 @@ public class HttpTest
             public void run() throws Exception
             {
                 // when
-                httpRequest.setUrl(HOST);
-                httpRequest.setMethod(HttpMethod.GET);
+                httpRequest.host(HOST)
+                        .method(HttpMethod.GET);
                 HttpResponse httpResponse = http.send(httpRequest);
 
                 // then
@@ -79,8 +79,8 @@ public class HttpTest
             public void run() throws Exception
             {
                 // when
-                httpRequest.setUrl(HOST);
-                httpRequest.setMethod(HttpMethod.POST);
+                httpRequest.host(HOST)
+                        .method(HttpMethod.POST);
                 HttpResponse httpResponse = http.send(httpRequest);
 
                 // then
@@ -103,9 +103,9 @@ public class HttpTest
             public void run() throws Exception
             {
                 // when
-                httpRequest.setUrl(HOST);
-                httpRequest.setMethod(HttpMethod.POST);
-                httpRequest.basicAuth("test", "test");
+                httpRequest.host(HOST)
+                        .method(HttpMethod.POST)
+                        .basicAuth("test", "test");
                 HttpResponse httpResponse = http.send(httpRequest);
 
                 // then
@@ -127,9 +127,9 @@ public class HttpTest
             public void run() throws Exception
             {
                 // when
-                httpRequest.setUrl(HOST);
-                httpRequest.setMethod(HttpMethod.POST);
-                httpRequest.addParameter("test", "test");
+                httpRequest.host(HOST)
+                        .method(HttpMethod.POST)
+                        .parameter("test", "test");
                 HttpResponse httpResponse = http.send(httpRequest);
 
                 // then
@@ -151,10 +151,10 @@ public class HttpTest
             public void run() throws Exception
             {
                 // when
-                httpRequest.setUrl(HOST);
-                httpRequest.setMethod(HttpMethod.POST);
-                httpRequest.setBody("test");
-                httpRequest.setTimeout(200);
+                httpRequest.host(HOST)
+                        .method(HttpMethod.POST)
+                        .body("test")
+                        .timeout(200);
                 HttpResponse httpResponse = http.send(httpRequest);
 
                 // then

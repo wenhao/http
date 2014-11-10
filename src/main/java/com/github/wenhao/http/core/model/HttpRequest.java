@@ -30,9 +30,10 @@ public class HttpRequest
         this.trustAll = false;
     }
 
-    public void setUrl(String url)
+    public HttpRequest host(String url)
     {
         this.url = url;
+        return this;
     }
 
     public String getUrl()
@@ -45,9 +46,10 @@ public class HttpRequest
         return httpMethod;
     }
 
-    public void setMethod(HttpMethod httpMethod)
+    public HttpRequest method(HttpMethod httpMethod)
     {
         this.httpMethod = httpMethod;
+        return this;
     }
 
     public String getBody()
@@ -55,9 +57,10 @@ public class HttpRequest
         return body;
     }
 
-    public void setBody(String body)
+    public HttpRequest body(String body)
     {
         this.body = body;
+        return this;
     }
 
     public List<NameValuePair> getParameters()
@@ -65,9 +68,10 @@ public class HttpRequest
         return parameters;
     }
 
-    public void addParameter(String key, String value)
+    public HttpRequest parameter(String key, String value)
     {
         this.parameters.add(new BasicNameValuePair(key, value));
+        return this;
     }
 
     public List<Header> getHeaders()
@@ -75,15 +79,17 @@ public class HttpRequest
         return headers;
     }
 
-    public void addHeader(String key, String value)
+    public HttpRequest header(String key, String value)
     {
         this.headers.add(new BasicHeader(key, value));
+        return this;
     }
 
-    public void basicAuth(String username, String password)
+    public HttpRequest basicAuth(String username, String password)
     {
         String encoding = encodeBase64String((username + ":" + password).getBytes());
-        this.addHeader("Authorization", "Basic " + encoding);
+        this.header("Authorization", "Basic " + encoding);
+        return this;
     }
 
     public HttpHost getProxy()
@@ -91,9 +97,10 @@ public class HttpRequest
         return proxy;
     }
 
-    public void setProxy(String host, Integer port)
+    public HttpRequest proxy(String host, Integer port)
     {
         this.proxy = new HttpHost(host, port);
+        return this;
     }
 
     public Integer getTimeout()
@@ -101,9 +108,10 @@ public class HttpRequest
         return timeout;
     }
 
-    public void setTimeout(Integer timeout)
+    public HttpRequest timeout(Integer timeout)
     {
         this.timeout = timeout;
+        return this;
     }
 
     public Boolean getTrustAll()
@@ -111,8 +119,9 @@ public class HttpRequest
         return trustAll;
     }
 
-    public void trustAll(Boolean trustAll)
+    public HttpRequest trustAll(Boolean trustAll)
     {
         this.trustAll = trustAll;
+        return this;
     }
 }

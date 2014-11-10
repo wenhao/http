@@ -14,7 +14,7 @@ public class TimeoutComponentTest
     {
         // given
         HttpRequest httpRequest = new HttpRequest();
-        httpRequest.setTimeout(50);
+        httpRequest.timeout(50);
 
 
         // when

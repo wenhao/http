@@ -20,7 +20,7 @@ public class HttpPostHttpRequestTest
     {
         // given
         HttpRequest httpRequest = new HttpRequest();
-        httpRequest.setMethod(HttpMethod.POST);
+        httpRequest.method(HttpMethod.POST);
         HttpEntityFactory httpEntityFactory = mock(HttpEntityFactory.class);
         given(httpEntityFactory.create(httpRequest)).willReturn(new StringEntity("test", ContentType.DEFAULT_TEXT));
 

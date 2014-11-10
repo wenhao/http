@@ -15,7 +15,7 @@ public class HttpGetHttpRequestTest
     {
         // given
         HttpRequest httpRequest = new HttpRequest();
-        httpRequest.setMethod(HttpMethod.GET);
+        httpRequest.method(HttpMethod.GET);
 
 
         // when
