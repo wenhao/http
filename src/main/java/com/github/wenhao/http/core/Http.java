@@ -9,6 +9,7 @@ import com.github.wenhao.http.core.model.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.client.utils.HttpClientUtils;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,6 +46,7 @@ public class Http
         org.apache.http.HttpResponse httpResponse = httpClient.execute(httpUriRequest);
         int statusCode = httpResponse.getStatusLine().getStatusCode();
         String content = parseResponse(httpResponse);
+        HttpClientUtils.closeQuietly(httpClient);
         return new HttpResponse(statusCode, content);
     }
 
