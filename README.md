@@ -18,6 +18,11 @@ Make GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS requests
 
 ### Installing
 
+Repository/Artifact available here
+```
+https://oss.sonatype.org/content/groups/public
+```
+
 #### With Maven
 You can use Maven by including the library:
 
