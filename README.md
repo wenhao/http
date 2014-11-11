@@ -12,7 +12,8 @@ Make GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS requests
 * Customizable timeout
 * Supports gzip
 * Good Test Coverage via a comprehensive set of developer tests, providing assurance of the library's quality
-* The number of external dependencies is minimised (currently: slf4j, httpclient).
+* The number of external dependencies is minimised (currently: slf4j, httpclient)
+* Auto release/close http resource
 
 ## Usage
 
