@@ -21,7 +21,7 @@ Make GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS requests
 
 Repository/Artifact available here
 ```
-https://oss.sonatype.org/content/groups/public
+[https://oss.sonatype.org](https://oss.sonatype.org/#nexus-search;gav~com.github.wenhao~http~~~)
 ```
 
 #### With Maven
