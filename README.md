@@ -20,9 +20,8 @@ Make GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS requests
 ### Installing
 
 Repository/Artifact available here
-```
+
 [https://oss.sonatype.org](https://oss.sonatype.org/#nexus-search;gav~com.github.wenhao~http~~~)
-```
 
 #### With Maven
 You can use Maven by including the library:
