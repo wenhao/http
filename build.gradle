@@ -123,8 +123,12 @@ uploadArchives {
                 developers {
                     developer {
                         id 'wenhao'
-                        name 'Wen Hao'
+                        name 'Hao Wen'
                         email 'wenhao@126.com'
+                        organization 'Hao Wen'
+                        roles {
+                            role 'Developer'
+                        }
                     }
                 }
             }
