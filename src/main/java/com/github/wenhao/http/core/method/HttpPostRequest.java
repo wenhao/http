@@ -6,6 +6,9 @@ import static com.github.wenhao.http.core.model.HttpMethod.POST;
 
 import com.github.wenhao.http.core.entity.HttpEntityFactory;
 import com.github.wenhao.http.core.model.HttpRequest;
+import org.apache.http.Header;
+import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
 
@@ -30,6 +33,12 @@ public class HttpPostRequest implements HttpRequestable
     {
         HttpPost httpPost = new HttpPost(URI.create(httpRequest.getUrl()));
         httpPost.setEntity(httpEntityFactory.create(httpRequest));
+        RequestConfig requestConfig = RequestConfig.custom()
+                .setConnectTimeout(httpRequest.getTimeout())
+                .setConnectTimeout(httpRequest.getTimeout())
+                .build();
+        httpPost.setConfig(requestConfig);
+        httpPost.setHeaders(httpRequest.getHeaders());
         return httpPost;
     }
 }

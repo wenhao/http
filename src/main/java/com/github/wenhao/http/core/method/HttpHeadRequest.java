@@ -3,6 +3,7 @@ package com.github.wenhao.http.core.method;
 import java.net.URI;
 
 import org.apache.http.Header;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpHead;
 import org.apache.http.client.methods.HttpUriRequest;
 
@@ -23,10 +24,12 @@ public class HttpHeadRequest implements HttpRequestable
     public HttpUriRequest apply(HttpRequest httpRequest)
     {
         HttpHead httpHead = new HttpHead(URI.create(httpRequest.getUrl()));
-        for (Header header : httpRequest.getHeaders()) {
-            httpHead.setHeader(header);
-        }
-
+        RequestConfig requestConfig = RequestConfig.custom()
+                .setConnectTimeout(httpRequest.getTimeout())
+                .setConnectTimeout(httpRequest.getTimeout())
+                .build();
+        httpHead.setConfig(requestConfig);
+        httpHead.setHeaders(httpRequest.getHeaders());
         return httpHead;
     }
 }

@@ -1,5 +1,7 @@
 package com.github.wenhao.http.core.method;
 
+import org.apache.http.Header;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpUriRequest;
 
@@ -28,6 +30,12 @@ public class HttpPutRequest implements HttpRequestable
     {
         HttpPut httpPut = new HttpPut();
         httpPut.setEntity(httpEntityFactory.create(httpRequest));
+        RequestConfig requestConfig = RequestConfig.custom()
+                .setConnectTimeout(httpRequest.getTimeout())
+                .setConnectTimeout(httpRequest.getTimeout())
+                .build();
+        httpPut.setConfig(requestConfig);
+        httpPut.setHeaders(httpRequest.getHeaders());
         return httpPut;
     }
 }

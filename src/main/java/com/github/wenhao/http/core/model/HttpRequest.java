@@ -30,6 +30,7 @@ public class HttpRequest
         this.parameters = new ArrayList<NameValuePair>();
         this.headers = new ArrayList<Header>();
         this.trustAll = false;
+        this.timeout = 500;
     }
 
     public HttpRequest host(String url)
@@ -76,9 +77,9 @@ public class HttpRequest
         return this;
     }
 
-    public List<Header> getHeaders()
+    public Header[] getHeaders()
     {
-        return headers;
+        return headers.toArray(new Header[headers.size()]);
     }
 
     public HttpRequest header(String key, String value)
