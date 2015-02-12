@@ -1,21 +1,22 @@
 package com.github.wenhao.http.core.method;
 
-import org.apache.http.client.config.RequestConfig;
-import org.apache.http.client.methods.HttpPatch;
-import org.apache.http.client.methods.HttpUriRequest;
-
+import com.github.wenhao.http.core.config.RequestConfigFactory;
 import com.github.wenhao.http.core.entity.HttpEntityFactory;
 import com.github.wenhao.http.core.model.HttpRequest;
+import org.apache.http.client.methods.HttpPatch;
+import org.apache.http.client.methods.HttpUriRequest;
 
 import static com.github.wenhao.http.core.model.HttpMethod.PATCH;
 
 public class HttpPatchRequest implements HttpRequestable
 {
     private HttpEntityFactory httpEntityFactory;
+    private RequestConfigFactory requestConfigFactory;
 
-    public HttpPatchRequest(HttpEntityFactory httpEntityFactory)
+    public HttpPatchRequest(HttpEntityFactory httpEntityFactory, RequestConfigFactory requestConfigFactory)
     {
         this.httpEntityFactory = httpEntityFactory;
+        this.requestConfigFactory = requestConfigFactory;
     }
 
     @Override
@@ -29,11 +30,7 @@ public class HttpPatchRequest implements HttpRequestable
     {
         HttpPatch httpPatch = new HttpPatch();
         httpPatch.setEntity(httpEntityFactory.create(httpRequest));
-        RequestConfig requestConfig = RequestConfig.custom()
-                .setConnectTimeout(httpRequest.getTimeout())
-                .setConnectTimeout(httpRequest.getTimeout())
-                .build();
-        httpPatch.setConfig(requestConfig);
+        httpPatch.setConfig(requestConfigFactory.create(httpRequest));
         httpPatch.setHeaders(httpRequest.getHeaders());
         return httpPatch;
     }

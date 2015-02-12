@@ -2,15 +2,20 @@ package com.github.wenhao.http.core.method;
 
 import java.net.URI;
 
+import com.github.wenhao.http.core.config.RequestConfigFactory;
 import com.github.wenhao.http.core.model.HttpMethod;
 import com.github.wenhao.http.core.model.HttpRequest;
-import org.apache.http.Header;
-import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpUriRequest;
 
 public class HttpGetRequest implements HttpRequestable
 {
+    private RequestConfigFactory requestConfigFactory;
+
+    public HttpGetRequest(RequestConfigFactory requestConfigFactory)
+    {
+        this.requestConfigFactory = requestConfigFactory;
+    }
 
     @Override
     public Boolean isApplicable(HttpRequest httpRequest)
@@ -22,11 +27,7 @@ public class HttpGetRequest implements HttpRequestable
     public HttpUriRequest apply(HttpRequest httpRequest)
     {
         HttpGet httpGet = new HttpGet(URI.create(httpRequest.getUrl()));
-        RequestConfig requestConfig = RequestConfig.custom()
-                .setConnectTimeout(httpRequest.getTimeout())
-                .setConnectTimeout(httpRequest.getTimeout())
-                .build();
-        httpGet.setConfig(requestConfig);
+        httpGet.setConfig(requestConfigFactory.create(httpRequest));
         httpGet.setHeaders(httpRequest.getHeaders());
         return httpGet;
     }

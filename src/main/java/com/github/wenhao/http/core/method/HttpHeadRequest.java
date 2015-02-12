@@ -2,18 +2,22 @@ package com.github.wenhao.http.core.method;
 
 import java.net.URI;
 
-import org.apache.http.Header;
-import org.apache.http.client.config.RequestConfig;
+import static com.github.wenhao.http.core.model.HttpMethod.HEAD;
+
+import com.github.wenhao.http.core.config.RequestConfigFactory;
+import com.github.wenhao.http.core.model.HttpRequest;
 import org.apache.http.client.methods.HttpHead;
 import org.apache.http.client.methods.HttpUriRequest;
 
-import com.github.wenhao.http.core.model.HttpRequest;
-
-
-import static com.github.wenhao.http.core.model.HttpMethod.HEAD;
-
 public class HttpHeadRequest implements HttpRequestable
 {
+    private RequestConfigFactory requestConfigFactory;
+
+    public HttpHeadRequest(RequestConfigFactory requestConfigFactory)
+    {
+        this.requestConfigFactory = requestConfigFactory;
+    }
+
     @Override
     public Boolean isApplicable(HttpRequest httpRequest)
     {
@@ -24,11 +28,7 @@ public class HttpHeadRequest implements HttpRequestable
     public HttpUriRequest apply(HttpRequest httpRequest)
     {
         HttpHead httpHead = new HttpHead(URI.create(httpRequest.getUrl()));
-        RequestConfig requestConfig = RequestConfig.custom()
-                .setConnectTimeout(httpRequest.getTimeout())
-                .setConnectTimeout(httpRequest.getTimeout())
-                .build();
-        httpHead.setConfig(requestConfig);
+        httpHead.setConfig(requestConfigFactory.create(httpRequest));
         httpHead.setHeaders(httpRequest.getHeaders());
         return httpHead;
     }
