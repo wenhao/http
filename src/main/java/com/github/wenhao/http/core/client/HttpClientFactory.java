@@ -61,7 +61,7 @@ public class HttpClientFactory
         return SSLContexts.custom().loadTrustMaterial(null, new TrustStrategy()
         {
             @Override
-            public boolean isTrusted(X509Certificate[] chain, String authType) throws CertificateException
+            public boolean isTrusted(X509Certificate[] chain, String authType)
             {
                 return true;
             }
