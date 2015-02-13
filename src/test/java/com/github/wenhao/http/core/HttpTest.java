@@ -172,7 +172,7 @@ public class HttpTest
         HttpClient httpClient = mock(HttpClient.class);
         given(httpRequestFactory.create(any(HttpRequest.class))).willReturn(new HttpPost());
         given(httpClient.execute(any(HttpUriRequest.class))).willThrow(IOException.class);
-        given(httpClientFactory.create(any(HttpRequest.class))).willReturn(httpClient);
+        given(httpClientFactory.create()).willReturn(httpClient);
 
         // when
         Http http = new Http(httpClientFactory, httpRequestFactory);

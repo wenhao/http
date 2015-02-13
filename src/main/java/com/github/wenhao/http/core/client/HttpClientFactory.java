@@ -1,29 +1,70 @@
 package com.github.wenhao.http.core.client;
 
-import java.util.List;
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
-import com.github.wenhao.http.core.model.HttpRequest;
-import org.apache.http.client.HttpClient;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
+
+import javax.net.ssl.SSLContext;
+
+import com.github.wenhao.http.core.config.HttpClientConfiguration;
+import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.DefaultHttpRequestRetryHandler;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.ssl.SSLContexts;
+import org.apache.http.ssl.TrustStrategy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class HttpClientFactory
 {
 
-    private List<HttpClientComponent> httpClientComponents;
+    private static final Logger LOGGER = LoggerFactory.getLogger(HttpClientFactory.class);
 
-    public HttpClientFactory(List<HttpClientComponent> httpClientComponents)
+    public HttpClientFactory()
     {
-        this.httpClientComponents = httpClientComponents;
+
     }
 
-    public HttpClient create(HttpRequest httpRequest)
+    public CloseableHttpClient create()
     {
-        HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
-        for (HttpClientComponent httpClientComponent : httpClientComponents) {
-            if (httpClientComponent.isApplicable(httpRequest)) {
-                httpClientComponent.apply(httpClientBuilder, httpRequest);
+        HttpClientConfiguration httpClientConfiguration = new HttpClientConfiguration();
+
+        HttpClientBuilder httpClientBuilder = HttpClientBuilder.create()
+                .setDefaultRequestConfig(httpClientConfiguration.getRequestConfig())
+                .setMaxConnTotal(httpClientConfiguration.getMaxConnections())
+                .setMaxConnPerRoute(httpClientConfiguration.getMaxConnectionsPerRoute())
+                .setUserAgent(httpClientConfiguration.getUserAgent())
+                .evictIdleConnections(httpClientConfiguration.getMaxIdle(), MILLISECONDS)
+                .setConnectionTimeToLive(httpClientConfiguration.getTimeToLive(), MILLISECONDS)
+                .setKeepAliveStrategy(new HttpKeepAliveStrategy(httpClientConfiguration.getKeepAlive()))
+                .setRetryHandler(new DefaultHttpRequestRetryHandler(httpClientConfiguration.getRetries(), false));
+
+        configSSL(httpClientBuilder, httpClientConfiguration.isTrustAllSSL());
+        return httpClientBuilder.build();
+    }
+
+    private void configSSL(HttpClientBuilder httpClientBuilder, boolean isTrustAllSSL)
+    {
+        if (isTrustAllSSL) {
+            try {
+                httpClientBuilder.setSSLSocketFactory(new SSLConnectionSocketFactory(sslContext()));
+            } catch (Exception e) {
+                LOGGER.debug("Fail to trust all certificates", e);
             }
         }
-        return httpClientBuilder.build();
+    }
+
+    private SSLContext sslContext() throws Exception
+    {
+        return SSLContexts.custom().loadTrustMaterial(null, new TrustStrategy()
+        {
+            @Override
+            public boolean isTrusted(X509Certificate[] chain, String authType) throws CertificateException
+            {
+                return true;
+            }
+        }).build();
     }
 }

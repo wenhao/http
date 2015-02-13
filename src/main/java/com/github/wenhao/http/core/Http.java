@@ -11,6 +11,7 @@ import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.utils.HttpClientUtils;
 import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,7 +31,7 @@ public class Http
 
     public HttpResponse send(HttpRequest httpRequest)
     {
-        HttpClient httpClient = httpClientFactory.create(httpRequest);
+        CloseableHttpClient httpClient = httpClientFactory.create();
         HttpUriRequest httpUriRequest = httpRequestFactory.create(httpRequest);
 
         try {
@@ -38,6 +39,8 @@ public class Http
         } catch (IOException e) {
             LOGGER.error(e.getMessage(), e);
             return new HttpResponse(400, BAD_REQUEST);
+        } finally {
+            closeHttpClient(httpClient);
         }
     }
 
@@ -57,6 +60,15 @@ public class Http
             return responseHandler.handleResponse(httpHttpResponse);
         } catch (IOException e) {
             return httpHttpResponse.getStatusLine().getReasonPhrase();
+        }
+    }
+
+    private void closeHttpClient(CloseableHttpClient httpClient)
+    {
+        try {
+            httpClient.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
