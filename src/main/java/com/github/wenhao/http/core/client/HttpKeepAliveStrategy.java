@@ -27,7 +27,7 @@ public class HttpKeepAliveStrategy implements ConnectionKeepAliveStrategy
             final String value = he.getValue();
             if (value != null && param.equalsIgnoreCase("timeout")) {
                 try {
-                    return Long.parseLong(value) * 1000;
+                    return Long.parseLong(value);
                 } catch (final NumberFormatException ignore) {
                     ignore.printStackTrace();
                 }

@@ -23,6 +23,7 @@ public class HttpClientConfiguration
         this.maxConnections = 1024;
         this.maxConnectionsPerRoute = 1024;
         this.keepAlive = 0;
+        this.maxIdle = 5;
         this.retries = 0;
         this.userAgent = "";
         this.trustAllSSL = false;

@@ -160,8 +160,8 @@ connectionTimeout: 500
 timeToLive: 3600000
 maxConnections: 1024
 maxConnectionsPerRoute: 1024
-maxIdle: 10
-keepAlive: 5
+maxIdle: 3600000
+keepAlive: 600000
 retries: 0
 userAgent: "HTTP Application"
 trustAllSSL: true
