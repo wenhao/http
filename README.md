@@ -141,6 +141,16 @@ HttpRequest httpRequest = new HttpRequest();
 
 ```
 
+### Proxy
+
+```java
+HttpRequest httpRequest = new HttpRequest();
+  .host("http://localhost:8080")
+  .method(POST);
+  .proxy("host/ip", "8080")
+
+```
+
 ### Response
 
 Upon receiving a response http returns the result in the form of an Object, this object should always have the same keys for each language regarding to the response details.
@@ -153,6 +163,7 @@ As shown above, we created a new http Request and expect get httpResponse. It wi
 with https.
 
 ## Advanced Configuration
+
 You can configure more things via a configuration file(http.yaml in classpath):
 ```yaml
 timeout: 500
