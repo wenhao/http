@@ -33,7 +33,7 @@ dependency
 <dependency>
   <groupId>com.github.wenhao</groupId>
   <artifactId>http</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
 </dependency>
 ```
 
@@ -47,7 +47,7 @@ repositories {
 
 dependencies {
   compile(
-    "com.github.wenhao:http:1.0.0",
+    "com.github.wenhao:http:1.0.1",
   )
 }
 ```
