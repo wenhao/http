@@ -163,7 +163,7 @@ maxConnectionsPerRoute: 1024
 maxIdle: 10
 keepAlive: 5
 retries: 0
-userAgent: ""
+userAgent: "HTTP Application"
 trustAllSSL: true
 ```
 
