@@ -21,9 +21,9 @@ import com.github.wenhao.http.core.method.HttpRequestFactory;
 import com.github.wenhao.http.core.model.HttpMethod;
 import com.github.wenhao.http.core.model.HttpRequest;
 import com.github.wenhao.http.core.model.HttpResponse;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -153,8 +153,7 @@ public class HttpTest
                 // when
                 httpRequest.host(HOST)
                         .method(HttpMethod.POST)
-                        .body("test")
-                        .timeout(200);
+                        .body("test");
                 HttpResponse httpResponse = http.send(httpRequest);
 
                 // then
@@ -169,7 +168,7 @@ public class HttpTest
         // given
         HttpClientFactory httpClientFactory = mock(HttpClientFactory.class);
         HttpRequestFactory httpRequestFactory = mock(HttpRequestFactory.class);
-        HttpClient httpClient = mock(HttpClient.class);
+        CloseableHttpClient httpClient = mock(CloseableHttpClient.class);
         given(httpRequestFactory.create(any(HttpRequest.class))).willReturn(new HttpPost());
         given(httpClient.execute(any(HttpUriRequest.class))).willThrow(IOException.class);
         given(httpClientFactory.create()).willReturn(httpClient);

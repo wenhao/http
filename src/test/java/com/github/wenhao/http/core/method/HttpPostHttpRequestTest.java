@@ -1,13 +1,10 @@
 package com.github.wenhao.http.core.method;
 
-import static org.apache.http.client.config.RequestConfig.DEFAULT;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
-import com.github.wenhao.http.core.config.RequestConfigFactory;
 import com.github.wenhao.http.core.entity.HttpEntityFactory;
 import com.github.wenhao.http.core.model.HttpMethod;
 import com.github.wenhao.http.core.model.HttpRequest;
@@ -26,12 +23,9 @@ public class HttpPostHttpRequestTest
         httpRequest.method(HttpMethod.POST);
         HttpEntityFactory httpEntityFactory = mock(HttpEntityFactory.class);
         given(httpEntityFactory.create(httpRequest)).willReturn(new StringEntity("test", ContentType.DEFAULT_TEXT));
-        RequestConfigFactory requestConfigFactory = mock(RequestConfigFactory.class);
-        when(requestConfigFactory.create(httpRequest)).thenReturn(DEFAULT);
-
 
         // when
-        HttpPostRequest httpPostRequest = new HttpPostRequest(httpEntityFactory, requestConfigFactory);
+        HttpPostRequest httpPostRequest = new HttpPostRequest(httpEntityFactory);
 
         // then
         assertThat(httpPostRequest.isApplicable(httpRequest), is(true));

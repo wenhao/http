@@ -63,8 +63,7 @@ HttpRequest httpRequest = new HttpRequest()
   .host("https://localhost:8080")
   .method(POST)
   .header("accept", "application/json")
-  .parameter("key", "value")
-  .timeout(5000);
+  .parameter("key", "value");
 
 Http http = HttpFactory.create();
 
@@ -154,26 +153,20 @@ As shown above, we created a new http Request and expect get httpResponse. It wi
 with https.
 
 ## Advanced Configuration
-### Timeouts
-You can set custom connection and socket timeout values (in milliseconds):
-```java
-httpRequest.timeout(5000);
-
+You can configure more things via a configuration file(http.yaml in classpath):
+```yaml
+timeout: 500
+connectionTimeout: 500
+timeToLive: 3600000
+maxConnections: 1024
+maxConnectionsPerRoute: 1024
+maxIdle: 10
+keepAlive: 5
+retries: 0
+userAgent: ""
+trustAllSSL: true
 ```
 
-### Request Headers
-You can add headers that will be sent on every request:
-```java
-httpRequest.header("key", "value");
-
-```
-
-### Trust All Certification
-
-```java
-httpRequest.trustAll(true);
-
-```
 
 ## Copyright and license
 

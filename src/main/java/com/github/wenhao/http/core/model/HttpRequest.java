@@ -21,16 +21,12 @@ public class HttpRequest
     private List<Header> headers;
     private List<NameValuePair> parameters;
     private HttpHost proxy;
-    private Integer timeout;
-    private Boolean trustAll;
     private File file;
 
     public HttpRequest()
     {
         this.parameters = new ArrayList<NameValuePair>();
         this.headers = new ArrayList<Header>();
-        this.trustAll = false;
-        this.timeout = 500;
     }
 
     public HttpRequest host(String url)
@@ -103,28 +99,6 @@ public class HttpRequest
     public HttpRequest proxy(String host, Integer port)
     {
         this.proxy = new HttpHost(host, port);
-        return this;
-    }
-
-    public Integer getTimeout()
-    {
-        return timeout;
-    }
-
-    public HttpRequest timeout(Integer timeout)
-    {
-        this.timeout = timeout;
-        return this;
-    }
-
-    public Boolean getTrustAll()
-    {
-        return trustAll;
-    }
-
-    public HttpRequest trustAll(Boolean trustAll)
-    {
-        this.trustAll = trustAll;
         return this;
     }
 

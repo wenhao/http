@@ -2,11 +2,12 @@ package com.github.wenhao.http.core.client;
 
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
-import java.security.cert.CertificateException;
+import java.io.IOException;
 import java.security.cert.X509Certificate;
 
 import javax.net.ssl.SSLContext;
 
+import com.github.wenhao.http.core.config.ConfigurationSourceProvider;
 import com.github.wenhao.http.core.config.HttpClientConfiguration;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -21,15 +22,16 @@ public class HttpClientFactory
 {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(HttpClientFactory.class);
+    private ConfigurationSourceProvider configurationSourceProvider;
 
-    public HttpClientFactory()
+    public HttpClientFactory(ConfigurationSourceProvider configurationSourceProvider)
     {
-
+        this.configurationSourceProvider = configurationSourceProvider;
     }
 
     public CloseableHttpClient create()
     {
-        HttpClientConfiguration httpClientConfiguration = new HttpClientConfiguration();
+        HttpClientConfiguration httpClientConfiguration = readConfiguration();
 
         HttpClientBuilder httpClientBuilder = HttpClientBuilder.create()
                 .setDefaultRequestConfig(httpClientConfiguration.getRequestConfig())
@@ -43,6 +45,16 @@ public class HttpClientFactory
 
         configSSL(httpClientBuilder, httpClientConfiguration.isTrustAllSSL());
         return httpClientBuilder.build();
+    }
+
+    private HttpClientConfiguration readConfiguration()
+    {
+        try {
+            return configurationSourceProvider.read();
+        } catch (IOException e) {
+            LOGGER.debug("Fail to load http.properties configuration file", e);
+        }
+        return new HttpClientConfiguration();
     }
 
     private void configSSL(HttpClientBuilder httpClientBuilder, boolean isTrustAllSSL)

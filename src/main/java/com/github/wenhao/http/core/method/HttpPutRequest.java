@@ -1,22 +1,19 @@
 package com.github.wenhao.http.core.method;
 
-import com.github.wenhao.http.core.config.RequestConfigFactory;
+import static com.github.wenhao.http.core.model.HttpMethod.PUT;
+
 import com.github.wenhao.http.core.entity.HttpEntityFactory;
 import com.github.wenhao.http.core.model.HttpRequest;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpUriRequest;
 
-import static com.github.wenhao.http.core.model.HttpMethod.PUT;
-
 public class HttpPutRequest implements HttpRequestable
 {
     private HttpEntityFactory httpEntityFactory;
-    private RequestConfigFactory requestConfigFactory;
 
-    public HttpPutRequest(HttpEntityFactory httpEntityFactory, RequestConfigFactory requestConfigFactory)
+    public HttpPutRequest(HttpEntityFactory httpEntityFactory)
     {
         this.httpEntityFactory = httpEntityFactory;
-        this.requestConfigFactory = requestConfigFactory;
     }
 
     @Override
@@ -30,7 +27,6 @@ public class HttpPutRequest implements HttpRequestable
     {
         HttpPut httpPut = new HttpPut();
         httpPut.setEntity(httpEntityFactory.create(httpRequest));
-        httpPut.setConfig(requestConfigFactory.create(httpRequest));
         httpPut.setHeaders(httpRequest.getHeaders());
         return httpPut;
     }
