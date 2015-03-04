@@ -4,7 +4,7 @@ import static com.github.wenhao.http.core.model.HttpMethod.DELETE;
 
 import com.github.wenhao.http.core.model.HttpRequest;
 import org.apache.http.client.methods.HttpDelete;
-import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.client.methods.HttpRequestBase;
 
 public class HttpDeleteRequest implements HttpRequestable
 {
@@ -16,7 +16,7 @@ public class HttpDeleteRequest implements HttpRequestable
     }
 
     @Override
-    public HttpUriRequest apply(HttpRequest httpRequest)
+    public HttpRequestBase apply(HttpRequest httpRequest)
     {
         HttpDelete httpDelete = new HttpDelete(httpRequest.getUrl());
         httpDelete.setHeaders(httpRequest.getHeaders());

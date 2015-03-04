@@ -7,7 +7,7 @@ import static com.github.wenhao.http.core.model.HttpMethod.POST;
 import com.github.wenhao.http.core.entity.HttpEntityFactory;
 import com.github.wenhao.http.core.model.HttpRequest;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.client.methods.HttpRequestBase;
 
 public class HttpPostRequest implements HttpRequestable
 {
@@ -26,7 +26,7 @@ public class HttpPostRequest implements HttpRequestable
     }
 
     @Override
-    public HttpUriRequest apply(HttpRequest httpRequest)
+    public HttpRequestBase apply(HttpRequest httpRequest)
     {
         HttpPost httpPost = new HttpPost(URI.create(httpRequest.getUrl()));
         httpPost.setEntity(httpEntityFactory.create(httpRequest));

@@ -6,7 +6,7 @@ import static com.github.wenhao.http.core.model.HttpMethod.HEAD;
 
 import com.github.wenhao.http.core.model.HttpRequest;
 import org.apache.http.client.methods.HttpHead;
-import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.client.methods.HttpRequestBase;
 
 public class HttpHeadRequest implements HttpRequestable
 {
@@ -17,7 +17,7 @@ public class HttpHeadRequest implements HttpRequestable
     }
 
     @Override
-    public HttpUriRequest apply(HttpRequest httpRequest)
+    public HttpRequestBase apply(HttpRequest httpRequest)
     {
         HttpHead httpHead = new HttpHead(URI.create(httpRequest.getUrl()));
         httpHead.setHeaders(httpRequest.getHeaders());

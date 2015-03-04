@@ -6,7 +6,7 @@ import static com.github.wenhao.http.core.model.HttpMethod.OPTIONS;
 
 import com.github.wenhao.http.core.model.HttpRequest;
 import org.apache.http.client.methods.HttpOptions;
-import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.client.methods.HttpRequestBase;
 
 public class HttpOptionsRequest implements HttpRequestable
 {
@@ -17,7 +17,7 @@ public class HttpOptionsRequest implements HttpRequestable
     }
 
     @Override
-    public HttpUriRequest apply(HttpRequest httpRequest)
+    public HttpRequestBase apply(HttpRequest httpRequest)
     {
         HttpOptions httpOptions = new HttpOptions(URI.create(httpRequest.getUrl()));
         httpOptions.setHeaders(httpRequest.getHeaders());
