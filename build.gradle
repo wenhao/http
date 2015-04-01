@@ -51,8 +51,10 @@ dependencies {
         archives javadocJar
     }
 
+    ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
+
     signing {
-        required { gradle.taskGraph.hasTask("uploadArchives") }
+        required { isReleaseVersion && gradle.taskGraph.hasTask("uploadArchives") }
         sign configurations.archives
     }
 }
