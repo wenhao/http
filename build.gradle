@@ -12,14 +12,12 @@ repositories {
     mavenCentral()
 }
 
-compileJava {
+def compatibility = {
     sourceCompatibility=1.6
     targetCompatibility=1.6
 }
-compileTestJava {
-    sourceCompatibility=1.6
-    targetCompatibility=1.6
-}
+compileJava(compatibility)
+compileTestJava(compatibility)
 
 dependencies {
     compile(
