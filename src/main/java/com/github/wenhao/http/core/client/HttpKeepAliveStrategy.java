@@ -20,12 +20,12 @@ public class HttpKeepAliveStrategy implements ConnectionKeepAliveStrategy
     @Override
     public long getKeepAliveDuration(final HttpResponse response, final HttpContext context)
     {
-        final HeaderElementIterator it = new BasicHeaderElementIterator(response.headerIterator(HTTP.CONN_KEEP_ALIVE));
-        while (it.hasNext()) {
-            final HeaderElement he = it.nextElement();
-            final String param = he.getName();
-            final String value = he.getValue();
-            if (value != null && param.equalsIgnoreCase("timeout")) {
+        final HeaderElementIterator headerElementIterator = new BasicHeaderElementIterator(response.headerIterator(HTTP.CONN_KEEP_ALIVE));
+        while (headerElementIterator.hasNext()) {
+            final HeaderElement headerElement = headerElementIterator.nextElement();
+            final String parameter = headerElement.getName();
+            final String value = headerElement.getValue();
+            if (value != null && parameter.equalsIgnoreCase("timeout")) {
                 try {
                     return Long.parseLong(value);
                 } catch (final NumberFormatException ignore) {

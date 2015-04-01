@@ -7,7 +7,7 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
 public class ClasspathConfigurationSourceProvider implements ConfigurationSourceProvider
 {
-    private static final String CONFIGURATION_FILE = "/http.yaml";
+    private static final String CONFIGURATION_FILE = "/http.yml";
     @Override
     public HttpClientConfiguration read() throws IOException
     {
